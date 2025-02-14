@@ -4,6 +4,7 @@
 # mounted volume
 sites
 
+devcontainer
 development/*
 !development/README.md
 !development/installer.py
