@@ -1,0 +1,11 @@
+http:
+  routers:
+    external-service:
+      rule: Host(`fedora.jackadam.top`)
+      service: external-service
+
+  services:
+    external-service:
+      loadBalancer:
+        servers:
+        - url: "http://192.168.2.245:8000"  # 非 Docker 服务地址

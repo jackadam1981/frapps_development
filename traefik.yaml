@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik:v2.10
+    command:
+      - --providers.docker
+      - --providers.file.directory=/etc/traefik  # 启用文件配置
+      - --providers.file.watch=true             # 开启文件监听
+      - --api.dashboard=true
+      - --api.insecure=true
+    ports:
+      - "8069:80"
+      - "18080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik-config:/etc/traefik  # 挂载静态配置目录
+
+networks:
+  default:
+    name: traefiknet
+    enable_ipv6: true
